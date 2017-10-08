@@ -23,16 +23,6 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      languageId: {
-        type: Sequelize.UUID,
-        allowNull: false,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'Languages',
-          key: 'id',
-          as: 'languageId',
-        }
       }
     })
   ,

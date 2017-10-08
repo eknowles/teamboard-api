@@ -10,7 +10,6 @@ export interface AppUserAttributes {
   notification?: boolean;
   phone?: string;
   pwd?: string;
-  languageId?: string;
 }
 
 export interface AppUserInstance extends Sequelize.Instance<AppUserAttributes> {
@@ -20,7 +19,6 @@ export interface AppUserInstance extends Sequelize.Instance<AppUserAttributes> {
 
   email: string;
   pwd: string;
-  languageId: string;
 }
 
 export default function defineUser(sequelize: Sequelize.Sequelize, DataTypes) {
@@ -29,14 +27,7 @@ export default function defineUser(sequelize: Sequelize.Sequelize, DataTypes) {
     pwd: DataTypes.STRING
   }, {
     timestamps: true,
-    classMethods: {
-      associate: function(models) {
-        AppUser.belongsTo(models.Language, {
-          foreignKey: 'languageId',
-          onDelete: 'CASCADE',
-        });
-      }
-    }
+    classMethods: {}
   });
   return AppUser;
 }
