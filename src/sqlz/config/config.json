@@ -1,0 +1,35 @@
+{
+  "development": {
+    "username": "root",
+    "password": "qwerty",
+    "database": "app-dev",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "dialect": "mysql",
+    "logging": true,
+    "force": true,
+    "timezone": "+00:00"
+  },
+  "test": {
+    "username": "root",
+    "password": "qwerty",
+    "database": "app-test",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "dialect": "mysql",
+    "logging": true,
+    "force": true,
+    "timezone": "+00:00"
+  },
+  "production": {
+    "username": "root",
+    "password": "qwerty",
+    "database": "app",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "dialect": "mysql",
+    "logging": true,
+    "force": true,
+    "timezone": "+00:00"
+  }
+}
