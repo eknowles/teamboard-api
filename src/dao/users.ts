@@ -1,9 +1,9 @@
 import * as crypto from 'crypto';
 
-import db from '../sqlz/models/_index';
+import db from '../db/models/_index';
 import { BYTE_TO_STRING_ENCODING, DIGEST, ITERATIONS, PASSWORD_LENGTH, SALT_LENGTH } from '../config/config';
-import { PasswordAttributes } from '../sqlz/models/password';
-import { UserInstance } from '../sqlz/models/user';
+import { PasswordAttributes } from '../db/models/password';
+import { UserInstance } from '../db/models/user';
 
 export async function create(user: { email: string, password: string }): Promise<any> {
   const usr = await db.user.create({ email: user.email });

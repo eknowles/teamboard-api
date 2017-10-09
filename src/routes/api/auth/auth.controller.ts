@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator/check';
-import { UserDao } from '../../dao/_index';
+import { UserDao } from '../../../dao/_index';
 
 export function login(req: Request, res: Response) {
   const errors = validationResult(req);

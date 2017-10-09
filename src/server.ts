@@ -6,7 +6,7 @@ import * as cors from 'cors';
 import * as i18n from 'i18n';
 import { json, urlencoded } from 'body-parser';
 import { Express } from 'express';
-import * as routes from './routes/_index';
+import * as routes from './routes/index';
 
 const expressValidator = require('express-validator');
 const PORT: number = 3000;
@@ -16,10 +16,6 @@ i18n.configure({
   autoReload: process.env.NODE_ENV === 'development'
 });
 
-/**
- * Root class of your node server.
- * Can be used for basic configurations, for instance starting up the server or registering middleware.
- */
 export class Server {
 
   private app: Express;
