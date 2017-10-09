@@ -3,12 +3,18 @@ import * as winston from 'winston';
 import * as boom from 'express-boom';
 import * as morgan from 'morgan';
 import * as cors from 'cors';
+import * as i18n from 'i18n';
 import { json, urlencoded } from 'body-parser';
 import { Express } from 'express';
 import * as routes from './routes/_index';
 
 const expressValidator = require('express-validator');
 const PORT: number = 3000;
+
+i18n.configure({
+  directory: __dirname + '/locales',
+  autoReload: process.env.NODE_ENV === 'development'
+});
 
 /**
  * Root class of your node server.
@@ -22,6 +28,7 @@ export class Server {
     this.app = express();
 
     // Express middleware
+    this.app.use(i18n.init);
     this.app.use(cors({
       optionsSuccessStatus: 200
     }));

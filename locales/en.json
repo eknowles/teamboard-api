@@ -1,8 +1,0 @@
-{
-  "language.current": "English",
-  "language.en": "English",
-  "validate.password.required": "Password is required",
-  "validate.email.required": "Email is required",
-  "validate.email.invalid": "A valid email is required",
-  "validate.errors": "Validation errors"
-}

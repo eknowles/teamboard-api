@@ -6,7 +6,7 @@ export function login(req: Request, res: Response) {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    return res.boom.badRequest('Validation Error', { errors: errors.mapped() });
+    return res.boom.badRequest(res.__('validate.errors'), { errors: errors.mapped() });
   }
 
   return UserDao
@@ -19,7 +19,7 @@ export function register(req: Request, res: Response) {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    return res.boom.badRequest('Validation Error', { errors: errors.mapped() });
+    return res.boom.badRequest(res.__('validate.errors'), { errors: errors.mapped() });
   }
 
   return UserDao
