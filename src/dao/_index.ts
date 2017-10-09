@@ -1,3 +1,3 @@
-import * as AppUserDao from './appusers';
+import * as UserDao from './users';
 
-export { AppUserDao };
+export { UserDao };

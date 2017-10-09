@@ -5,12 +5,12 @@ import * as Sequelize from 'sequelize';
 const config = require('../config/config.json');
 
 // Import model specification from its own definition file.
-import { LanguageInstance, LanguageAttributes } from './language';
-import { AppUserInstance, AppUserAttributes } from './appuser';
+import { UserInstance, UserAttributes } from './user';
+import { PasswordAttributes, PasswordInstance } from './password';
 
 interface DbConnection {
-  Language: Sequelize.Model<LanguageInstance, LanguageAttributes>;
-  AppUser: Sequelize.Model<AppUserInstance, AppUserAttributes>;
+  user: Sequelize.Model<UserInstance, UserAttributes>;
+  password: Sequelize.Model<PasswordInstance, PasswordAttributes>;
 }
 
 let db = {};
@@ -25,16 +25,16 @@ const sequelize = new Sequelize(
 
 const basename = path.basename(module.filename);
 fs
-.readdirSync(__dirname)
-.filter(function(file) {
-  return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-})
-.forEach(function(file) {
-  const model = sequelize['import'](path.join(__dirname, file));
-  // NOTE: you have to change from the original property notation to
-  // index notation or tsc will complain about undefined property.
-  db[model['name']] = model;
-});
+  .readdirSync(__dirname)
+  .filter(function(file) {
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+  })
+  .forEach(function(file) {
+    const model = sequelize['import'](path.join(__dirname, file));
+    // NOTE: you have to change from the original property notation to
+    // index notation or tsc will complain about undefined property.
+    db[model['name']] = model;
+  });
 
 Object.keys(db).forEach(function(modelName) {
   if (db[modelName].associate) {

@@ -1,3 +1,3 @@
-import * as AppUserController from './appusers/_index';
+import * as UserController from './users/_index';
 
-export { AppUserController };
+export { UserController };
