@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as Sequelize from 'sequelize';
 
-const config = require('../config/config.json');
+const config = require('./../../config/db.json');
 
 // Import model specification from its own definition file.
 import { UserInstance, UserAttributes } from './user';

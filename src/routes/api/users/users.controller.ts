@@ -14,3 +14,10 @@ export function getUserById(req: Request, res: Response) {
     .then(user => res.status(200).send(user))
     .catch(error => res.boom.badRequest(error));
 }
+
+export function getMe(req: Request, res: Response) {
+  return UserDao
+    .getUserById(req.user.id)
+    .then(user => res.status(200).send(user))
+    .catch(error => res.boom.badRequest(error));
+}

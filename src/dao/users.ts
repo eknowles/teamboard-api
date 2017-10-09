@@ -30,18 +30,25 @@ export function getUserById(id: string): Promise<UserInstance> {
   return db.user.findById(id);
 }
 
-export async function login(user: { email: string, password: string }): Promise<any> {
+export async function login(user: { email: string, password: string }): Promise<UserInstance> {
   const usr = await db.user.findOne({
     where: { email: user.email },
     include: [{ model: db.password }],
     order: [[db.password, 'createdAt', 'DESC']]
   });
 
-  if (!usr || !usr.passwords.length) {
-    throw new Error;
+  if (!usr) {
+    throw 'No User Found';
   }
 
-  return verifyPassword(usr.passwords[0], user.password);
+  const latestPassword = usr.passwords[0];
+  const validPassword = await verifyPassword(latestPassword, user.password);
+
+  if (validPassword) {
+    return Promise.resolve(usr);
+  }
+
+  throw 'Bad Password';
 }
 
 

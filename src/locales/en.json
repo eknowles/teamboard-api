@@ -2,5 +2,6 @@
   "language.current": "English",
   "language.en": "English",
   "language.fr": "French",
-  "validate.errors": "Validation errors"
+  "validate.errors": "Validation errors",
+  "login.failed": "Email or Password is incorrect"
 }
