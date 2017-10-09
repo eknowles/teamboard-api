@@ -1,11 +1,13 @@
 import { Express } from 'express';
 import { UserController } from '../endpoints/_index';
-import { UserAuth } from './middleware/auth';
+import { checkUserPassword } from './middleware/auth';
 
 export function routes(app: Express) {
 
   app.get('/api/users', UserController.UserGet.list);
-  app.post('/api/users', UserAuth, UserController.UserPost.create);
-  app.post('/api/users/login', UserAuth, UserController.UserPost.login);
+  app.get('/api/users/:userId', UserController.UserGet.getUserById);
+
+  app.post('/api/users', checkUserPassword, UserController.UserPost.create);
+  app.post('/api/users/login', checkUserPassword, UserController.UserPost.login);
 
 }
