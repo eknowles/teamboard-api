@@ -1,7 +1,7 @@
-import { body } from 'express-validator/check';
+import { body, validationResult } from 'express-validator/check';
+import { NextFunction, Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { JWT_SECRET } from '../config/config';
-
 /**
  * Ensures the request contains email and password in the body.
  * @type {[ValidationChain , ValidationChain]}
@@ -17,7 +17,7 @@ export const checkUserPassword = [
  * @param res
  * @param next
  */
-export function isUser(req, res, next) {
+export function isUser(req: Request, res: Response, next: NextFunction) {
   let token;
 
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
@@ -31,4 +31,14 @@ export function isUser(req, res, next) {
     req.user = decoded.data;
     return next();
   });
+}
+
+export function validate(req: Request, res: Response, next: NextFunction) {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.boom.badRequest(res.__('validate.errors'), { errors: errors.mapped() });
+  }
+
+  return next();
 }
